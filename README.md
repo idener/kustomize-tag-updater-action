@@ -25,8 +25,8 @@ on:
 
 env:
   image_name: ""
-  repo_url: ""
-  enable_deployment: true
+  deploy_repo_url: ""
+  deploy_enable: true
 
 jobs:
   
@@ -34,11 +34,11 @@ jobs:
   # [...]
 
   update_tags:
-    if: env.enable_deployment == true
+    if: env.deploy_enable == true
     steps:
     - uses: idener/kustomize-tag-updater@v0.1
       with:
-        repo_url: ${{ env.repo_url }}
+        repo_url: "${{ env.deploy_repo_url }}"
         new_image: "${{ env.image_name }}:$NEW_TAG"
         token: ""
 
