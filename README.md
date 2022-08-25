@@ -6,6 +6,7 @@
 | ------------  | ---      | ------ | --------------- | ----------- |
 | repo_url      | yes      | string |                 | URL of the repository containing the kubernetes manifests
 | new_image     | yes      | string |                 | Image name with the new tag
+| registry      | false    | string | `ghcr.io`       | URL of the registry used to store the image
 | token         | false    | string |                 | Personal access token (PAT) used to fetch the repository
 | kustomize_path| false    | string | `manifests`     | Path to the folder where kustomization.yaml is stored
 
