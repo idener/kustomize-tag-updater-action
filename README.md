@@ -23,16 +23,23 @@ on:
       - develop
       - main
 
+env:
+  image_name: ""
+  repo_url: ""
+  enable_deployment: true
+
 jobs:
   
   # Testing, building and pushing container jobs
   # [...]
 
   update_tags:
+    if: env.enable_deployment == true
+    steps:
     - uses: idener/kustomize-tag-updater@v0.1
       with:
-        repo_url: https://github.com/idener/CD-Cityloops
-        new_image: "$IMAGE_NAME:$NEW_TAG"
+        repo_url: ${{ env.repo_url }}
+        new_image: "${{ env.image_name }}:$NEW_TAG"
         token: ""
 
 ```
