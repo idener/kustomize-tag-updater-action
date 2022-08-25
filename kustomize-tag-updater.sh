@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Install Kustomize
-cd manifests
 curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
 # Edit kustomization.yaml with new image tag
