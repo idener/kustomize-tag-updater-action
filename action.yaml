@@ -27,6 +27,6 @@ runs:
 
     - name: Execute image tag updater script
       run: |
-        cd tmp
+        cd tmp/${{ input.kustomize_path }}
         ${{ github.action_path }}/kustomize-tag-updater.sh {{ input.new_image }}
       shell: bash
