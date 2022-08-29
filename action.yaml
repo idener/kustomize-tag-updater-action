@@ -25,12 +25,12 @@ runs:
     - name: Clone the repository to be updated
       uses: actions/checkout@v3
       with:
-        repository: ${{ input.repo_url }}
-        token: ${{ input.token }}
+        repository: ${{ inputs.repo_url }}
+        token: ${{ inputs.token }}
         path: ./tmp
 
     - name: Execute image tag updater script
       run: |
-        cd tmp/${{ input.kustomize_path }}
-        ${{ github.action_path }}/kustomize-tag-updater.sh {{ input.registry }} {{ input.new_image }}
+        cd tmp/${{ inputs.kustomize_path }}
+        ${{ github.action_path }}/kustomize-tag-updater.sh {{ inputs.registry }} {{ inputs.new_image }}
       shell: bash
