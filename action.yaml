@@ -42,7 +42,7 @@ runs:
         echo "Installing Kustomize"
         curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
         echo "Editing kustomization.yaml with new image tag..."
-        ./kustomize edit set image {{ inputs.image }}:{{ inputs.tag }}
+        ./kustomize edit set image ${{ inputs.image }}:${{ inputs.tag }}
         rm kustomize
         echo "Pushing changes to repo..."
         git commit . && git push
