@@ -31,7 +31,7 @@ runs:
     - name: Clone the repository to be updated
       uses: actions/checkout@v3
       with:
-        repository: ${{ inputs.repo-url }}
+        repository: ${{ inputs.repo }}
 #        token: ${{ inputs.token }}
         ssh-key: ${{ inputs.ssh-key }}
         path: ./tmp
