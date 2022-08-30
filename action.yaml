@@ -44,12 +44,14 @@ runs:
 
     - name: Edit kustomization.yaml with new image tag
       run: |
+        cd tmp/${{ inputs.kustomize-path }}
         ./kustomize edit set image ${{ inputs.image }}:${{ inputs.tag }}
         rm kustomize
       shell: bash
 
     - name: Push changes to repo
       run: |
+        cd tmp/${{ inputs.kustomize-path }}
         git config --global user.email "antonio.gomez@idener.es"
         git config --global user.name "Antonio Gomez"
         git commit . && git push
