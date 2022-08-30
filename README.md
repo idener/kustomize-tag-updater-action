@@ -12,6 +12,8 @@
 | ssh-key       | false    | string |                 | SSH key used to fetch the repository
 | kustomize-path| false    | string | `manifests`     | Path to the folder where kustomization.yaml is stored
 
+You should use either `ssh-key` or `token` for authentication with the private repository, but not both. It's recommended to store this data as a repository secret.
+
 ## Usage
 
 Use this action in the last step of the CI pipeline, after the testing, building and pushing to registry jobs.
@@ -59,5 +61,3 @@ jobs:
           tag: ${{ env.TAG }}
           ssh-key: "${{ secrets.REPO_SSH }}"
 ```
-
-You should use either `ssh-key` or `token` for authentication with the private repository, but not both. It's recommended to store this data as a repository secret.
