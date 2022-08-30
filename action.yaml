@@ -2,12 +2,15 @@ name: 'Kustomize Image Tag Updater'
 description: 'A Github action to automatically update K8s configuration files with the new image tag specified'
 author: 'Antonio Gomez Navarro'
 inputs:
-  repo-url:
+  repo:
     required: true
     description: 'URL of the repository containing the kubernetes manifests'
-  new-image:
+  image:
     required: true
-    description: 'Image name with the new tag'
+    description: 'Name of the image to be update'
+  tag:
+    required: true
+    description: 'New tag assigned to the image'
   registry: 
     required: false
     description: 'URL of the registry used to store the image'
@@ -29,7 +32,7 @@ runs:
       uses: actions/checkout@v3
       with:
         repository: ${{ inputs.repo-url }}
-#        token: ${{ inputs.token }}
+        token: ${{ inputs.token }}
         ssh-key: ${{ inputs.ssh-key }}
         path: ./tmp
 
@@ -39,7 +42,7 @@ runs:
         echo "Installing Kustomize"
         curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
         echo "Editing kustomization.yaml with new image tag..."
-        ./kustomize edit set image {{ inputs.registry }}/{{ inputs.new-image }}
+        ./kustomize edit set image {{ inputs.image }}={{ inputs.image }}:{{ inputs.tag }}
         rm kustomize
         echo "Pushing changes to repo..."
         git commit . && git push
