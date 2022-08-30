@@ -29,8 +29,8 @@ runs:
       uses: actions/checkout@v3
       with:
         repository: ${{ inputs.repo-url }}
-        token: ${{ inputs.token }}
-        ssh-key: ${{ ssh-key }}
+#        token: ${{ inputs.token }}
+        ssh-key: ${{ inputs.ssh-key }}
         path: ./tmp
 
     - name: Execute image tag updater script
